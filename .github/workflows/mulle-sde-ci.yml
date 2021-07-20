@@ -27,12 +27,10 @@ jobs:
       run:  env | sort
 
     - uses: actions/checkout@v2
-      if: ${{ env.ACT }} != "true"
+      if: ${{ ! env.ACT }}
 
-    # for act, create a local docker with ENV HAVE_MULLE_SDE=true
-    # and install mulle-sde in the local docker, so you can skip this step
     - uses: mulle-sde/github-ci@v1
-      if: ${{ env.HAVE_MULLE_SDE }} != "true"
+      if: ${{ ! env.ACT }}
 
     - name: Dump Project Environment
       run:  |
